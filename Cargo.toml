@@ -1,0 +1,15 @@
+[package]
+name = "go-upload-server"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/GOcontroll/go-upload-server"
+readme = "README.md"
+homepage = "https://gocontroll.com"
+publish = false
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+axum = { version = "0.6", features = ["multipart"] }
+tokio = { version = "1.34", features = ["macros"]}
