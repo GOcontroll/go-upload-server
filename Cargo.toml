@@ -11,5 +11,5 @@ publish = false
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-axum = { version = "0.6", features = ["multipart"] }
-tokio = { version = "1.34", features = ["macros"]}
+tiny_http = { version = "0.6", default-features = false }
+multipart = { version = "0.18", features = ["tiny_http", "server"], default-features = false}
