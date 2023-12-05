@@ -1,4 +1,4 @@
-use std::process::Command;
+use std::process::{Command, exit};
 
 extern crate tiny_http;
 extern crate multipart;
@@ -8,7 +8,10 @@ use multipart::server::{Multipart, SaveResult};
 use tiny_http::{Response, StatusCode, Request};
 fn main() {
     // Starting a server on `localhost:80`
-    let server = tiny_http::Server::http("0.0.0.0:8001").expect("Could not bind 0.0.0.0:8001");
+    let server = tiny_http::Server::http("0.0.0.0:8001").unwrap_or_else(|err| {
+		eprintln!("Could not bind 0.0.0.0:8001\n{}", err);
+		exit(-1);
+	});
     loop {
         // This blocks until the next request is received
         let mut request = server.recv().unwrap();
@@ -24,7 +27,7 @@ fn main() {
         };
 
         // Answers with a response to a client
-        request.respond(resp).unwrap();
+        _ = request.respond(resp);
     }
 }
 
