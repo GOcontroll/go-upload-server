@@ -83,6 +83,9 @@ fn process_request(request: &mut Request) -> io::Result<Response<RespBody>> {
                             .with_path("/usr/simulink/GOcontroll_Linux.elf")
                         {
                             SaveResult::Full(_) => {
+                                _ = Command::new("chmod")
+                                    .args(["555", "/usr/simulink/GOcontroll_Linux.elf"])
+                                    .status();
                                 if restart {
                                     _ = Command::new("systemctl")
                                         .arg("start")
