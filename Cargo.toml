@@ -1,6 +1,6 @@
 [package]
 name = "go-upload-server"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
 license = "MIT"
 repository = "https://github.com/GOcontroll/go-upload-server"
@@ -11,5 +11,5 @@ publish = false
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-tiny_http = { version = "0.6", default-features = false }
-multipart = { version = "0.18", features = ["tiny_http", "server"], default-features = false}
+tokio = { version = "1.38", default-features = false, features = ["net", "rt", "macros"]}
+axum = { version = "0.7.5", features = ["multipart", "tokio", "http1"], default-features = false }
