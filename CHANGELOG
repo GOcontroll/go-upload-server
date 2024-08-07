@@ -1,3 +1,6 @@
+v1.0.2
+Added some missing newlines from http responses
+
 v1.0.1
 Fixed a2l not being written to fs
 Changed to axum+tokio, as the previous solution was not maintained

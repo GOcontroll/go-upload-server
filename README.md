@@ -7,3 +7,13 @@ and then
 upx --best --lzma target/aarch64-unknown-linux-gnu/release/go-upload-server
 ```
 Make sure it is compiled using glibc 2.31 or lower
+
+package it as .deb:
+```
+cargo deb --no-build --target aarch64-unknown-linux-gnu --no-strip
+```
+
+sign the package:
+```
+dpkg-sig --sign builder target/aarch64-unknown-linux-gnu/debian/go-upload-server_*_arm64.deb
+```

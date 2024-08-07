@@ -1,0 +1,13 @@
+
+[Unit]
+Description=File upload server
+After=network.target
+
+
+[Service]
+ExecStart=/usr/bin/go-upload-server
+Type=simple
+RemainAfterExit=no
+
+[Install]
+WantedBy=sysinit.target

@@ -35,7 +35,7 @@ async fn handle_upload(mut multipart: Multipart) -> Response<String> {
                 if file_extension != "elf" {
                     return build_response(
                         StatusCode::BAD_REQUEST,
-                        "Wrong file extension detected! Check your file!".to_owned(),
+                        "Wrong file extension detected! Check your file!\n".to_owned(),
                     );
                 }
 
@@ -84,7 +84,7 @@ async fn handle_upload(mut multipart: Multipart) -> Response<String> {
                                 .spawn();
                         }
                         _ = Command::new("sync").spawn();
-                        return build_response(StatusCode::OK, "elfFile uploaded!".to_owned());
+                        return build_response(StatusCode::OK, "elfFile uploaded!\n".to_owned());
                     }
                     Err(err) => {
                         return build_response(
@@ -110,7 +110,7 @@ async fn handle_upload(mut multipart: Multipart) -> Response<String> {
                 if file_extension != "a2l" {
                     return build_response(
                         StatusCode::BAD_REQUEST,
-                        "Wrong file extension detected! Check your file!".to_owned(),
+                        "Wrong file extension detected! Check your file!\n".to_owned(),
                     );
                 }
 
@@ -130,7 +130,7 @@ async fn handle_upload(mut multipart: Multipart) -> Response<String> {
                             .arg("nodered")
                             .spawn();
                         _ = Command::new("sync").spawn();
-                        return build_response(StatusCode::OK, "a2lFile uploaded!".to_owned());
+                        return build_response(StatusCode::OK, "a2lFile uploaded!\n".to_owned());
                     }
                     Err(err) => {
                         return build_response(
@@ -156,7 +156,7 @@ async fn handle_upload(mut multipart: Multipart) -> Response<String> {
                 if file_extension != "ovpn" {
                     return build_response(
                         StatusCode::BAD_REQUEST,
-                        "Wrong file extension detected! Check your file!".to_owned(),
+                        "Wrong file extension detected! Check your file!\n".to_owned(),
                     );
                 }
 
@@ -191,7 +191,7 @@ async fn handle_upload(mut multipart: Multipart) -> Response<String> {
                                 .arg("openvpn")
                                 .spawn();
                             _ = Command::new("sync").spawn();
-                            return build_response(StatusCode::OK, "ovpnFile uploaded!".to_owned());
+                            return build_response(StatusCode::OK, "ovpnFile uploaded!\n".to_owned());
                         }
                     }
                     Err(err) => {

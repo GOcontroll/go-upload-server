@@ -1,15 +1,22 @@
 [package]
 name = "go-upload-server"
-version = "1.0.1"
+version = "1.0.2"
 edition = "2021"
 license = "MIT"
 repository = "https://github.com/GOcontroll/go-upload-server"
 readme = "README.md"
 homepage = "https://gocontroll.com"
 publish = false
+authors = ["Maud Spierings"]
+description = "A server that is used to upload new simulink builds, disable it when in a production environment as it is an easy backdoor"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 tokio = { version = "1.38", default-features = false, features = ["net", "rt", "macros"]}
 axum = { version = "0.7.5", features = ["multipart", "tokio", "http1"], default-features = false }
+
+[package.metadata.deb]
+depends = ["libc-bin"]
+maintainer-scripts = "debian/"
+systemd-units = { enable = false }
