@@ -125,12 +125,14 @@ async fn handle_upload(mut multipart: Multipart) -> Response<String> {
 
                 match std::fs::write("/usr/simulink/GOcontroll_Linux.a2l", bytes) {
                     Ok(_) => {
+                        _ = Command::new("go-parse-a2l")
+                            .spawn();
                         _ = Command::new("systemctl")
                             .arg("restart")
                             .arg("nodered")
                             .spawn();
                         _ = Command::new("sync").spawn();
-                        return build_response(StatusCode::OK, "a2lFile uploaded!\n".to_owned());
+                        return build_response(StatusCode::OK, "a2lFile uploaded!\nParsed a2l\n".to_owned());
                     }
                     Err(err) => {
                         return build_response(

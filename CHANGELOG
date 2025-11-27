@@ -1,3 +1,7 @@
+v1.0.3
+Parse a2l when it is uploaded
+Bumped dependencies
+
 v1.0.2
 Added some missing newlines from http responses
 
