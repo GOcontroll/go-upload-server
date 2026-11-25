@@ -1,15 +1,30 @@
 use std::process::Command;
 
-use axum::{extract::Multipart, http::StatusCode, response::Response, routing::post, Router};
+use axum::{
+    extract::Multipart,
+    http::StatusCode,
+    response::Response,
+    routing::{get, post},
+    Router,
+};
 
 use tokio::net::TcpListener;
+
+mod suite;
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
 
 #[tokio::main(flavor = "current_thread")]
 async fn main() {
     println!("GOcontroll upload server V{}", VERSION);
-    let app = Router::new().route("/upload", post(handle_upload));
+    // The upload is as it always was; what the GOcontroll Suite asks beside it is in suite.rs.
+    let app = Router::new()
+        .route("/upload", post(handle_upload))
+        .route("/info", get(suite::info))
+        .route("/application/start", post(suite::start))
+        .route("/application/stop", post(suite::stop))
+        .route("/xcp", get(suite::xcp))
+        .layer(axum::middleware::from_fn(suite::cors));
     let listener = TcpListener::bind("0.0.0.0:8001").await.unwrap();
     axum::serve(listener, app.into_make_service())
         .await

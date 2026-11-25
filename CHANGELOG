@@ -1,3 +1,10 @@
+v1.2.0
+For the GOcontroll Suite (a web page), beside the upload, which is unchanged:
+GET /info: the controller and the application it holds
+POST /application/start and /application/stop: the go-simulink service
+GET /xcp: a WebSocket to the XCP server of the application (XCP on TCP)
+CORS headers for the pages of the Suite, also on POST /upload
+
 v1.0.3
 Parse a2l when it is uploaded
 Bumped dependencies
